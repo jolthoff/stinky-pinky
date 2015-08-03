@@ -1,0 +1,1 @@
+var riddles = [{q: 'cum devil', a: 'semen demon'}, {q: 'electric chicken', a: 'shock cock'}, {q:'evil butthole', a: 'heinous anus'}, {q:'vagina bed', a: 'twat cot'}, {q: 'cum bucket ice sports', a: 'bukake hockey'}, {q: 'kissing perineum', a: 'smooch gooch'}, {q: 'clairvoyant sex position', a: 'visionary missionary'}, {q: 'ballsack native american relic', a: 'scrotum totem'}];
