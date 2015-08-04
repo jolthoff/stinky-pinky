@@ -26,6 +26,7 @@ html, body {
 	min-height: 40%;
 	/*background: linear-gradient(to bottom, rgba(235, 0, 255, .7), rgba(255,0,255,1));*/
 	z-index: 999;
+
 }
 
 .answer {
@@ -90,6 +91,18 @@ html, body {
 
 }
 
+.question.failed {
+	font-size: 20rem;
+	text-align: center;
+	font-size: 6rem;
+	top: 3.9rem;
+	left: 22.765rem;
+	color: rgba(228, 193, 15, 1);
+	white-space: nowrap;
+	display: none;
+	position: fixed;
+}
+
 .bling {
 	z-index: 100;
 	left: 40.525rem;
@@ -108,7 +121,7 @@ html, body {
 	color: rgba(228, 228, 15, 1);
 }
 
-.wrong, .skipped {
+.wrong {
 	font-family: 'Erica One', cursive;
 	font-size: 9rem;
 	text-align: center;
@@ -121,8 +134,15 @@ html, body {
 
 .skipped {
 
+	text-align: center;
+	font-size: 6rem;
 	top: 3.9rem;
 	left: 22.765rem;
+	color: rgba(228, 193, 15, 1);
+	white-space: nowrap;
+	display: none;
+	position: fixed;
+
 }
 
 .timer {

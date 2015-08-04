@@ -16,6 +16,19 @@ $(document).ready(function(){
   var $timer = $('.timer p');
   var time = 15;
 
+  // TODO
+  /*
+  * Grab audio for animations
+  * Add more riddles
+  * Add lazier evaluation of riddle answer
+  * Skip animation takes riddle.q text
+  * timeUp() ends game
+  * Add red alarm
+  * Bumping alarm number animation
+  * Add font-size changing function dependent on riddle.q.length
+  */
+
+  //timer functions
   function resetTime() {
     time = 15;
     $timer.text(time);
@@ -37,6 +50,7 @@ $(document).ready(function(){
     timeCount();
   }, 2000);
 
+  // get riddle object
   function getRiddle() {
     var random = Math.floor(Math.random() * riddles.length);
     riddle = riddles.splice(random, random + 1)[0];
@@ -45,6 +59,7 @@ $(document).ready(function(){
 
   };
 
+  // add riddle object's text to DOM
   function quiz() {
     $question = $('<div class="question">' + riddle.q + '</div>');
 
@@ -54,6 +69,7 @@ $(document).ready(function(){
 
   getRiddle();
 
+  // incorrect answer animation
   function wrongAnswer() {
     $wrong.show().animate({'left': '19rem'}, 50,
       function() {
@@ -76,24 +92,31 @@ $(document).ready(function(){
           })
       })
     $input.val('');
+    timeCount();
   };
 
+  // skip animation
   function skipper() {
     $question.remove();
     $input.val('');
-    $skipped.show().animate({'font-size':'33rem'}, {queue: false, duration: 250});
-    $skipped.animate({'opacity': '0'}, 250, 
+    $skipped.text(riddle.q);
+    $skipped.show().animate({'font-size':'18rem'}, {queue: false, duration: 400});
+    $skipped.animate({'opacity': '0'}, 400, 
       function() {
         $(this).hide();
         $(this).css('opacity', 1);
         $(this).css('font-size', '9rem');
     });
 
-    getRiddle();  
+    setTimeout(function() {
+      getRiddle(); 
+    }, 200)
+ 
     resetTime();
 
   }
 
+  // animation and point evaluation
   function blinger() {
 
     function animate() {
@@ -107,7 +130,8 @@ $(document).ready(function(){
     }
 
     if (test) {
-      $bling.text('+2');
+
+      $bling.text('+' + time);
       $bling.css('color', 'green');
       $question.remove();
       $input.val('');
@@ -117,18 +141,20 @@ $(document).ready(function(){
       getRiddle();
 
     } else {
+
       $bling.text('-2');
       $bling.css('color', 'red');
       points -= 2;
 
       animate();
     }
+
     $counter.text('' + points);
     test = false;
 
   };
 
-
+  // check if answer is correct and call appropriate animations
   function testAnswer() {
 
     if($input.val().toLowerCase() === riddle.a) {
@@ -140,6 +166,8 @@ $(document).ready(function(){
     }
   };
 
+
+  // event handlers for DOM elements
   $submit.on({
     click: function() {
       testAnswer();
