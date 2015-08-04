@@ -52,9 +52,12 @@ $(document).ready(function(){
 
   // get riddle object
   function getRiddle() {
-    var random = Math.floor(Math.random() * riddles.length);
-    riddle = riddles.splice(random, random + 1)[0];
 
+    var random = Math.floor(Math.random() * riddles.length);
+    var stop = random + 1;
+    riddle = riddles.splice(random, 1)[0];
+
+    console.log("length is " + riddles.length);
     quiz();
 
   };
@@ -62,7 +65,10 @@ $(document).ready(function(){
   // add riddle object's text to DOM
   function quiz() {
     $question = $('<div class="question">' + riddle.q + '</div>');
-
+    if ($question.text().length > 30)
+      $question.css('font-size', '5rem');
+    else
+      $question.css('font-size', '6rem');
     $question.prependTo($questions);
 
   };
@@ -97,8 +103,10 @@ $(document).ready(function(){
 
   // skip animation
   function skipper() {
+
     $question.remove();
     $input.val('');
+    
     $skipped.text(riddle.q);
     $skipped.show().animate({'font-size':'18rem'}, {queue: false, duration: 400});
     $skipped.animate({'opacity': '0'}, 400, 
@@ -132,7 +140,8 @@ $(document).ready(function(){
     if (test) {
 
       $bling.text('+' + time);
-      $bling.css('color', 'green');
+      $bling.removeClass('.bloodybrown');
+      $bling.addClass('.babyblue');
       $question.remove();
       $input.val('');
       points += time;
@@ -143,7 +152,8 @@ $(document).ready(function(){
     } else {
 
       $bling.text('-2');
-      $bling.css('color', 'red');
+      $bling.removeClass('.babyblue');
+      $bling.addClass('.bloodybrown')
       points -= 2;
 
       animate();

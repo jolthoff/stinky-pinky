@@ -24,7 +24,7 @@ html, body {
 	min-width: 100%;
 	height: 40%;
 	min-height: 40%;
-	/*background: linear-gradient(to bottom, rgba(235, 0, 255, .7), rgba(255,0,255,1));*/
+	font-family: 'Dancing Script', cursive;
 	z-index: 999;
 
 }
@@ -84,23 +84,20 @@ html, body {
 }
 
 .question {
+	z-index: 9999;
 	font-size: 6rem;
 	text-align: center;
 	margin: 3rem;
-	color: rgba(228, 193, 15, 1);
+	color: rgba(255, 180, 180, 1);
+	white-space: nowrap;
+	transition: font-size 1s, opacity 1s;
 
 }
 
-.question.failed {
+.question .failed {
 	font-size: 20rem;
-	text-align: center;
-	font-size: 6rem;
-	top: 3.9rem;
-	left: 22.765rem;
-	color: rgba(228, 193, 15, 1);
 	white-space: nowrap;
-	display: none;
-	position: fixed;
+	opacity: 0;
 }
 
 .bling {
@@ -109,8 +106,15 @@ html, body {
 	top: 25.125rem;
 	position: fixed;
 	font-size: 3rem;
-	color: rgba(0, 255, 25, .5);
 	display: none;
+}
+
+.babyblue {
+	color: rgba(142, 210, 255, 1);
+}
+
+.bloodybrown {
+	color: rgba(121, 36, 5, 1);
 }
 
 .counter {
@@ -118,7 +122,7 @@ html, body {
 	font-family: 'Erica One', cursive;
 	text-align: center;
 	font-size: 9rem;
-	color: rgba(228, 228, 15, 1);
+	color: rgba(255, 180, 180, 1);
 }
 
 .wrong {
@@ -134,11 +138,12 @@ html, body {
 
 .skipped {
 
+	font-family: 'Dancing Script', cursive;
 	text-align: center;
 	font-size: 6rem;
 	top: 3.9rem;
 	left: 22.765rem;
-	color: rgba(228, 193, 15, 1);
+	color: rgba(255, 180, 180, 1);
 	white-space: nowrap;
 	display: none;
 	position: fixed;
@@ -157,8 +162,9 @@ html, body {
 }
 
 .timer p {
+	font-family: 'La Belle Aurore', cursive;
 	color: black;
 	text-align: center;
-	margin: 1.35rem 0 0 0;
+	margin: .7rem 0 0 0;
 	font-size: 4.55rem;
 }
