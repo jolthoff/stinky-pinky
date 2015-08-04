@@ -15,6 +15,11 @@ $(document).ready(function(){
   var $skipped = $('.skipped');
   var $timer = $('.timer p');
   var time = 15;
+  var $gameover = $('.gameover');
+  var gameover;
+  var $ching = $('.ching')[0];
+  var $cheer = $('.cheer')[0];
+  var $grunt = $('.grunt')[0];
 
   // TODO
   /*
@@ -28,6 +33,19 @@ $(document).ready(function(){
   * Add font-size changing function dependent on riddle.q.length
   */
 
+  // audio bits
+  function ching() {
+    $ching.volume = 0.6;
+    $ching.load();
+    $ching.play();
+  }
+
+  function cheer() {
+    $cheer.volume = 0.6;
+    $cheer.load();
+    $cheer.play();
+  }
+
   //timer functions
   function resetTime() {
     time = 15;
@@ -35,14 +53,28 @@ $(document).ready(function(){
   }
 
   function timeUp() {
+    gameover = true;
     skipper();
-    resetTime();
+    cheer();
+    $gameover.text("Yaaaaaaay! You got " + points + " points!")
+    $gameover.show().animate({'top': '15%'}, 200);
+    $counter.hide();
+    $submit.hide();
+    $skip.hide();
+    $input.hide();
   }
 
   function timeCount() {
-    if (time < 1)
+    if (gameover) {
+      $timer.text(0);
+      return;
+    } else if (time <= 1) 
         timeUp();
     time -= 1;
+    $timer.animate({'font-size': '5.95rem', 'margin-top': '0'}, 50, 
+      function() {
+        $(this).animate({'font-size': '4.55rem', 'margin-top': '.7rem'}, 50)
+      })
     $timer.text(time);
   }
 
@@ -77,6 +109,11 @@ $(document).ready(function(){
 
   // incorrect answer animation
   function wrongAnswer() {
+
+    $grunt.volume = 0.4;
+    $grunt.load();
+    $grunt.play();
+
     $wrong.show().animate({'left': '19rem'}, 50,
       function() {
         $(this).animate({'left': '25rem'}, 50,
@@ -115,12 +152,6 @@ $(document).ready(function(){
         $(this).css('opacity', 1);
         $(this).css('font-size', '9rem');
     });
-
-    setTimeout(function() {
-      getRiddle(); 
-    }, 200)
- 
-    resetTime();
 
   }
 
@@ -169,6 +200,7 @@ $(document).ready(function(){
 
     if($input.val().toLowerCase() === riddle.a) {
       test = true;
+      ching();
       blinger();
       resetTime();
     } else {
@@ -188,6 +220,13 @@ $(document).ready(function(){
     click: function() {
       blinger();
       skipper();
+
+      setTimeout(function() {
+        getRiddle(); 
+      }, 200)
+
+      resetTime();
+
     }
   })
 
