@@ -53,9 +53,10 @@ html, body {
 .submit, .skip {
 	display: inline-block;
 	margin: 0 4rem 0 4rem;
+	padding-bottom: 1.725rem;
 }
 
-.submit, .skip:hover {
+.submit:hover, .skip:hover {
 	cursor: pointer;
 }
 
@@ -96,12 +97,48 @@ html, body {
 	position: fixed;
 	font-size: 3rem;
 	color: rgba(0, 255, 25, .5);
-
+	display: none;
 }
+
 .counter {
 	margin-top: -2rem;
 	font-family: 'Erica One', cursive;
 	text-align: center;
 	font-size: 9rem;
 	color: rgba(228, 228, 15, 1);
+}
+
+.wrong, .skipped {
+	font-family: 'Erica One', cursive;
+	font-size: 9rem;
+	text-align: center;
+	color: rgba(255, 0, 0, 1);
+	position: fixed;
+	top: 7.125rem;
+	left: 22.765rem;
+	display: none;
+}
+
+.skipped {
+
+	top: 3.9rem;
+	left: 22.765rem;
+}
+
+.timer {
+	background-image: url('../images/alarm.png');
+	height: 7.15rem;
+	width: 6.25rem;
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: fixed;
+	top: 17.8rem;
+	left: 6.6rem;
+}
+
+.timer p {
+	color: black;
+	text-align: center;
+	margin: 1.35rem 0 0 0;
+	font-size: 4.55rem;
 }

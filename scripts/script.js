@@ -11,9 +11,31 @@ $(document).ready(function(){
   var $input = $('.field');
   var $counter = $('.counter');
   var $bling = $('.bling');
+  var $wrong = $('.wrong');
+  var $skipped = $('.skipped');
+  var $timer = $('.timer p');
+  var time = 15;
 
-  $bling.hide();
+  function resetTime() {
+    time = 15;
+    $timer.text(time);
+  }
 
+  function timeUp() {
+    skipper();
+    resetTime();
+  }
+
+  function timeCount() {
+    if (time < 1)
+        timeUp();
+    time -= 1;
+    $timer.text(time);
+  }
+
+  setInterval(function() {
+    timeCount();
+  }, 2000);
 
   function getRiddle() {
     var random = Math.floor(Math.random() * riddles.length);
@@ -32,49 +54,89 @@ $(document).ready(function(){
 
   getRiddle();
 
+  function wrongAnswer() {
+    $wrong.show().animate({'left': '19rem'}, 50,
+      function() {
+        $(this).animate({'left': '25rem'}, 50,
+          function() {
+            $(this).animate({'left': '20rem'}, 50,
+              function() {
+                $(this).animate({'left': '24rem'}, 50,
+                  function() {
+                    $(this).animate({'left': '21rem'}, 50,
+                      function() {
+                        $(this).animate({'left': '23rem'}, 50, 
+                          function() {
+                            $(this).hide();
+                            $(this).css('left', '22.765rem');
+                          })
+                      })
+                  })
+              })
+          })
+      })
+    $input.val('');
+  };
+
+  function skipper() {
+    $question.remove();
+    $input.val('');
+    $skipped.show().animate({'font-size':'33rem'}, {queue: false, duration: 250});
+    $skipped.animate({'opacity': '0'}, 250, 
+      function() {
+        $(this).hide();
+        $(this).css('opacity', 1);
+        $(this).css('font-size', '9rem');
+    });
+
+    getRiddle();  
+    resetTime();
+
+  }
 
   function blinger() {
 
     function animate() {
-      $bling.show().animate({'top': "19rem"}, 200,
+      $bling.show().animate({'opacity': '0', 'top': "19rem"}, 500,
           function() {
-            $(this).fadeOut(200);
-            setTimeout(function() {
-              $bling.css('top', '25.125rem');
-            }, 200);
-            
+            $(this).hide();
+            $bling.css('top', '25.125rem');
+            $bling.css('opacity', '1');
           }
-      );
+      )
     }
 
     if (test) {
       $bling.text('+2');
       $bling.css('color', 'green');
+      $question.remove();
+      $input.val('');
+      points += time;
+
       animate();
+      getRiddle();
+
     } else {
       $bling.text('-2');
       $bling.css('color', 'red');
+      points -= 2;
+
       animate();
     }
+    $counter.text('' + points);
+    test = false;
+
   };
+
 
   function testAnswer() {
 
     if($input.val().toLowerCase() === riddle.a) {
       test = true;
-
-      $question.remove();
-      $input.val('');
-      points += 2;
-
       blinger();
-      $counter.text('+' + points);
-      getRiddle();
-
+      resetTime();
     } else {
-      
-      $input.val('');
-
+      wrongAnswer();
     }
   };
 
@@ -86,8 +148,8 @@ $(document).ready(function(){
 
   $skip.on({
     click: function() {
-      test = false;
       blinger();
+      skipper();
     }
   })
 
