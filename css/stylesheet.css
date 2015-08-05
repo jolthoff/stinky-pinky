@@ -1,4 +1,4 @@
-/** {
+/* {
 	border: solid 1px red;
 }*/
 
@@ -50,13 +50,24 @@ html, body {
 	text-align: center;
 	position: fixed;
 	top: 10.125rem;
-	left: 15.765rem;
+	eft: 15.765rem;
+	left: 18.5%;
 }
 
 .submit, .skip {
-	display: inline-block;
-	margin: 0 4rem 0 4rem;
-	padding-bottom: 1.725rem;
+	position: fixed;
+}
+
+.submit {
+	top: 16.25rem;
+	eft: 31.95rem;
+	left: 40%;
+}
+
+.skip {
+	top: 16.95rem;
+	eft: 48.95rem;
+	left: 54%;
 }
 
 .submit:hover, .skip:hover {
@@ -93,7 +104,6 @@ html, body {
 	color: rgba(255, 180, 180, 1);
 	white-space: nowrap;
 	transition: font-size 1s, opacity 1s;
-
 }
 
 .question .failed {
@@ -117,6 +127,10 @@ html, body {
 	text-align: center;
 	font-size: 9rem;
 	color: rgba(255, 180, 180, 1);
+	position: fixed;
+	top: 21rem;
+	eft: 39.15rem;
+	left: 45.4%;
 }
 
 .wrong {
@@ -126,7 +140,8 @@ html, body {
 	color: rgba(255, 0, 0, 1);
 	position: fixed;
 	top: 7.125rem;
-	left: 22.765rem;
+	eft: 22.765rem;
+	left: 27.2%;
 	display: none;
 }
 
@@ -152,7 +167,8 @@ html, body {
 	background-repeat: no-repeat;
 	position: fixed;
 	top: 17.8rem;
-	left: 6.6rem;
+	eft: 6.6rem;
+	left: 7%;
 	transition: transform .05s;
 }
 

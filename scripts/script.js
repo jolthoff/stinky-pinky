@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function() {
 
   // globals
   var test;
@@ -14,7 +14,7 @@ $(document).ready(function(){
   var $wrong = $('.wrong');
   var $skipped = $('.skipped');
   var $timer = $('.timer');
-  var time = 15;
+  var time = 150;
   var $gameover = $('.gameover');
   var gameover;
   var $alarm = $('.alarm');
@@ -164,7 +164,7 @@ $(document).ready(function(){
     $grunt.load();
     $grunt.play();
 
-    $wrong.show().animate({'left': '19rem'}, 50,
+    /*$wrong.show().animate({'left': '19rem'}, 50,
       function() {
       $(this).animate({'left': '25rem'}, 50,
         function() {
@@ -178,6 +178,26 @@ $(document).ready(function(){
         function() {
           $(this).hide();
           $(this).css('left', '22.765rem');
+        })
+      })
+      })
+      })
+      })
+      })*/
+      $wrong.show().animate({'left': '23%'}, 50,
+      function() {
+      $(this).animate({'left': '31%'}, 50,
+        function() {
+      $(this).animate({'left': '24%'}, 50,
+        function() {
+      $(this).animate({'left': '30%'}, 50,
+        function() {
+      $(this).animate({'left': '25%'}, 50,
+        function() {
+      $(this).animate({'left': '29%'}, 50, 
+        function() {
+          $(this).hide();
+          $(this).css('left', '27.2%');
         })
       })
       })
@@ -203,6 +223,16 @@ $(document).ready(function(){
         $(this).css('font-size', '9rem');
     });
 
+  }
+
+  function counterAdj() {
+    $counter.text('' + points);
+    if (points > 100)
+      $counter.css('left', '40.1%')
+    else if (points > 10)
+      $counter.css('left', '43.9%')
+    else 
+      $counter.css('left', '45.4%')
   }
 
   // animation and point evaluation
@@ -240,8 +270,7 @@ $(document).ready(function(){
       animate();
     }
 
-    $counter.text('' + points);
-    test = false;
+    counterAdj();
 
   };
 
@@ -254,6 +283,7 @@ $(document).ready(function(){
       blinger();
       resetTime();
       getRiddle();
+      test = false;
     } else {
       wrongAnswer();
     }
@@ -286,6 +316,9 @@ $(document).ready(function(){
       if(e.keyCode === 13) {
         testAnswer();
       }
+    },
+    click: function() {
+      $input.focus();
     }
   });
 
