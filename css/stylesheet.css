@@ -13,7 +13,20 @@ input:focus, select:focus, textarea:focus, button:focus {
 html, body {
 	height: 100%;
 	background-color: white;
+	cursor: default;
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
 }
+
+::-webkit-input-placeholder  { color: rgba(127, 218, 255, 1) }
+:-moz-placeholder { color: rgba(127, 218, 255, 1) }
+::-moz-placeholder { color: rgba(127, 218, 255, 1) }
+:-ms-input-placeholder { color: rgba(127, 218, 255, 1) } 
 
 .billboard {
 	display: block;
@@ -39,34 +52,35 @@ html, body {
 	text-align: center;
 }
 
-.answer input {
+.field {
+	font-family: 'Dancing Script', cursive;
 	padding: .425rem;
 	vertical-align: center;
 	font-size: 3rem;
 	border-radius: 3rem;
 	width: 60%;
 	height: 4rem;
-	opacity: .3;
 	text-align: center;
 	position: fixed;
 	top: 10.125rem;
-	eft: 15.765rem;
 	left: 18.5%;
+	color: transparent;
+   	
 }
 
 .submit, .skip {
 	position: fixed;
+	height: 3.625rem;
+	width: 3.625rem;
 }
 
 .submit {
 	top: 16.25rem;
-	eft: 31.95rem;
 	left: 40%;
 }
 
 .skip {
 	top: 16.95rem;
-	eft: 48.95rem;
 	left: 54%;
 }
 
@@ -114,7 +128,8 @@ html, body {
 
 .bling {
 	z-index: 100;
-	left: 40.525rem;
+	eft: 40.525rem;
+	left: 47%;
 	top: 25.125rem;
 	position: fixed;
 	font-size: 3rem;
@@ -129,7 +144,6 @@ html, body {
 	color: rgba(255, 180, 180, 1);
 	position: fixed;
 	top: 21rem;
-	eft: 39.15rem;
 	left: 45.4%;
 }
 
@@ -151,7 +165,7 @@ html, body {
 	text-align: center;
 	font-size: 6rem;
 	top: 3.9rem;
-	left: 22.765rem;
+	left: 29%;
 	color: rgba(255, 180, 180, 1);
 	white-space: nowrap;
 	display: none;
@@ -167,7 +181,6 @@ html, body {
 	background-repeat: no-repeat;
 	position: fixed;
 	top: 17.8rem;
-	eft: 6.6rem;
 	left: 7%;
 	transition: transform .05s;
 }
@@ -182,17 +195,21 @@ html, body {
 
 .gameover {
 	font-family: 'La Belle Aurore', cursive;
-	padding: 2rem;
-	color: rgba(255, 180, 180, 1);
 	text-align: center;
-	font-size: 6.75rem;
 	position: fixed;
 	top: -69%;
 	display: none;
 	left: 17%;
-	height: 66%;
+	height: 77%;
 	width: 66%;
 	border-radius: 1rem;
 	background-color: rgba(127, 238, 255, .7);
 	z-index: 999;
+}
+
+.message {
+	margin-top: -1.7rem;
+	line-height: 1.4;
+	color: rgba(255, 180, 180, 1);
+	font-size: 6.75rem;
 }
