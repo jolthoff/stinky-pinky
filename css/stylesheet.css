@@ -213,3 +213,15 @@ html, body {
 	color: rgba(255, 180, 180, 1);
 	font-size: 6.75rem;
 }
+
+.gamestart {
+	display: none;
+	position: fixed;
+	top: 5rem;
+	left: 10%;
+	height: 81%;
+	width: 79%;
+	border-radius: 1rem;
+	background-color: rgba(127, 238, 255, .7);
+	z-index: 999;
+}

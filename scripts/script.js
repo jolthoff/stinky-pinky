@@ -1,8 +1,29 @@
+var begin = function() {
+  // local storers
+  function welcome() {
+    if (!visitor.user) {
+      $gamestart.html('<p class="welcome">Welcome stranger! Here are the rules to Stinky Pinky:</p><p class="rules">You will receive a riddle (usually two words) to which you will answer with a word pair in which the first word relates to the first word of the riddle, and the second word relates to the second word of the riddle</p><p class="rules">Your word pair must rhyme</p><p class="rules">Good luck!</p><p class="prompt">Got a name?</p><input class="username" type="text" autofocus/>')
+      visitor.user = $username.val() + Math.floor(Math.random * 1000);
+      
+    } else 
+      $gamestart.html('<p class="welcome">Welcome back ' + visitor.user + '</p><p class="highscore">Try to beat ' + visitor.highscore + '</p>')
+
+  }
+
+  function storePoints() {
+    if (points > localStorage.getItem('highscore')) {
+      visitor.highscore = points;
+      localStorage.setItem('highscore', JSON.stringify(visitor.highscore));
+    }
+  }
+}
+
 $(document).ready(function() {
 
   // globals
+  var visitor = {};
   var test;
-  var points = 90;
+  var points = 0;
   var riddle;
   var $question;
   var $questions = $('.questions');
@@ -14,7 +35,8 @@ $(document).ready(function() {
   var $wrong = $('.wrong');
   var $skipped = $('.skipped');
   var $timer = $('.timer');
-  var time = 2;
+  var time = 9999;
+  var $gamestart = $('.gamestart');
   var $gameover = $('.gameover');
   var gameover;
   var $message = $('.message');
@@ -29,13 +51,18 @@ $(document).ready(function() {
 
   // TODO
     /*
-      * Grab audio for animations
       * Add more riddles
       * Add lazier evaluation of riddle answer
-
-
-      * Add red alarm
-      * Bumping alarm number animation
+      * Add try again prompt
+      * Animate endgame prompt
+      * Record highscore values
+      * Add rules prompt
+      * Add red and blue alarm
+      * Modify alarm animation and display times
+      ---
+      LONG TERM TODO
+        * Add multi user capability (all users see same screen)
+        * Add team scoring and tagging
 
     */
 
@@ -101,7 +128,7 @@ $(document).ready(function() {
       }, 900)
 
       $message.text("Womp womp")
-      
+
     } else {
 
       setTimeout(function() {
