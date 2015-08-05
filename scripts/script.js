@@ -13,25 +13,29 @@ $(document).ready(function(){
   var $bling = $('.bling');
   var $wrong = $('.wrong');
   var $skipped = $('.skipped');
-  var $timer = $('.timer p');
+  var $timer = $('.timer');
   var time = 15;
   var $gameover = $('.gameover');
   var gameover;
+  var $alarm = $('.alarm');
   var $ching = $('.ching')[0];
   var $cheer = $('.cheer')[0];
   var $grunt = $('.grunt')[0];
+  var $tick = $('.tick')[0];
+  var $ring = $('.ring')[0];
+
 
   // TODO
-  /*
-  * Grab audio for animations
-  * Add more riddles
-  * Add lazier evaluation of riddle answer
-  * Skip animation takes riddle.q text
-  * timeUp() ends game
-  * Add red alarm
-  * Bumping alarm number animation
-  * Add font-size changing function dependent on riddle.q.length
-  */
+    /*
+      * Grab audio for animations
+      * Add more riddles
+      * Add lazier evaluation of riddle answer
+
+
+      * Add red alarm
+      * Bumping alarm number animation
+
+    */
 
   // audio bits
   function ching() {
@@ -46,6 +50,18 @@ $(document).ready(function(){
     $cheer.play();
   }
 
+  function tick() {
+    $tick.volume = 0.3;
+    $tick.load();
+    $tick.play();
+  }
+
+  function ring() {
+    $ring.volume = 0.5;
+    $ring.load();
+    $ring.play();
+  }
+
   //timer functions
   function resetTime() {
     time = 15;
@@ -54,8 +70,13 @@ $(document).ready(function(){
 
   function timeUp() {
     gameover = true;
+    alarmShake()
+    setInterval(function() {
+      alarmShake()
+    }, 60);
+    ring();
     skipper();
-    cheer();
+    ching();
     $gameover.text("Yaaaaaaay! You got " + points + " points!")
     $gameover.show().animate({'top': '15%'}, 200);
     $counter.hide();
@@ -64,20 +85,49 @@ $(document).ready(function(){
     $input.hide();
   }
 
+  // animate alarm image
+  function alarmShake() {
+
+      $alarm.css('transform', 'rotate(15deg)');
+      setTimeout(function() {
+        $alarm.css('transform', 'rotate(-30deg)')
+      }, 25)
+      setTimeout(function() {
+        $alarm.css('transform', 'rotate(0deg)')
+      }, 50)
+    
+
+  }
+
+  // change time counter
   function timeCount() {
+    
     if (gameover) {
       $timer.text(0);
       return;
-    } else if (time <= 1) 
+
+    } else if (time <= 1) {
         timeUp();
+    } else if (time <= 6) {
+      alarmShake();
+      setTimeout(function() {
+        alarmShake();
+      }, 900);
+      tick();
+      setTimeout(function() {
+        tick();
+      }, 900)
+    }
     time -= 1;
     $timer.animate({'font-size': '5.95rem', 'margin-top': '0'}, 50, 
       function() {
         $(this).animate({'font-size': '4.55rem', 'margin-top': '.7rem'}, 50)
       })
     $timer.text(time);
+    tick();
   }
 
+  // set intervals for which to change time counter
   setInterval(function() {
     timeCount();
   }, 2000);
@@ -116,23 +166,23 @@ $(document).ready(function(){
 
     $wrong.show().animate({'left': '19rem'}, 50,
       function() {
-        $(this).animate({'left': '25rem'}, 50,
-          function() {
-            $(this).animate({'left': '20rem'}, 50,
-              function() {
-                $(this).animate({'left': '24rem'}, 50,
-                  function() {
-                    $(this).animate({'left': '21rem'}, 50,
-                      function() {
-                        $(this).animate({'left': '23rem'}, 50, 
-                          function() {
-                            $(this).hide();
-                            $(this).css('left', '22.765rem');
-                          })
-                      })
-                  })
-              })
-          })
+      $(this).animate({'left': '25rem'}, 50,
+        function() {
+      $(this).animate({'left': '20rem'}, 50,
+        function() {
+      $(this).animate({'left': '24rem'}, 50,
+        function() {
+      $(this).animate({'left': '21rem'}, 50,
+        function() {
+      $(this).animate({'left': '23rem'}, 50, 
+        function() {
+          $(this).hide();
+          $(this).css('left', '22.765rem');
+        })
+      })
+      })
+      })
+      })
       })
     $input.val('');
     timeCount();
@@ -171,20 +221,20 @@ $(document).ready(function(){
     if (test) {
 
       $bling.text('+' + time);
-      $bling.removeClass('.bloodybrown');
-      $bling.addClass('.babyblue');
+      // change color of animated score to baby blue
+      $bling.css('color', 'rgba(142, 210, 255, 1)');
       $question.remove();
       $input.val('');
       points += time;
 
       animate();
-      getRiddle();
+      
 
     } else {
 
       $bling.text('-2');
-      $bling.removeClass('.babyblue');
-      $bling.addClass('.bloodybrown')
+      // change color of animated score to reddish brown
+      $bling.css('color', 'rgba(121, 36, 5, 1)');
       points -= 2;
 
       animate();
@@ -200,9 +250,10 @@ $(document).ready(function(){
 
     if($input.val().toLowerCase() === riddle.a) {
       test = true;
-      ching();
+      cheer();
       blinger();
       resetTime();
+      getRiddle();
     } else {
       wrongAnswer();
     }

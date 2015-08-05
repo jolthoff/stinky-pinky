@@ -25,7 +25,7 @@ html, body {
 	height: 40%;
 	min-height: 40%;
 	font-family: 'Dancing Script', cursive;
-	z-index: 999;
+	z-index: 50;
 
 }
 
@@ -83,7 +83,7 @@ html, body {
 }
 
 .question {
-	z-index: 9999;
+	z-index: 100;
 	font-size: 6rem;
 	text-align: center;
 	margin: 3rem;
@@ -106,14 +106,6 @@ html, body {
 	position: fixed;
 	font-size: 3rem;
 	display: none;
-}
-
-.babyblue {
-	color: rgba(142, 210, 255, 1);
-}
-
-.bloodybrown {
-	color: rgba(121, 36, 5, 1);
 }
 
 .counter {
@@ -149,7 +141,7 @@ html, body {
 
 }
 
-.timer {
+.alarm {
 	background-image: url('../images/alarm.png');
 	height: 7.15rem;
 	width: 6.25rem;
@@ -158,9 +150,10 @@ html, body {
 	position: fixed;
 	top: 17.8rem;
 	left: 6.6rem;
+	transition: transform .05s;
 }
 
-.timer p {
+.timer {
 	font-family: 'La Belle Aurore', cursive;
 	color: black;
 	text-align: center;
@@ -170,6 +163,7 @@ html, body {
 
 .gameover {
 	font-family: 'La Belle Aurore', cursive;
+	padding: 2rem;
 	color: rgba(255, 180, 180, 1);
 	text-align: center;
 	font-size: 6.75rem;
@@ -181,5 +175,5 @@ html, body {
 	width: 66%;
 	border-radius: 1rem;
 	background-color: rgba(127, 238, 255, .7);
-	z-index: 9999999;
+	z-index: 999;
 }
