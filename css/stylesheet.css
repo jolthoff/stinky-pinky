@@ -44,10 +44,13 @@ html, body {
 	vertical-align: center;
 	font-size: 3rem;
 	border-radius: 3rem;
-	width: 40%;
+	width: 60%;
 	height: 4rem;
 	opacity: .3;
 	text-align: center;
+	position: fixed;
+	top: 10.125rem;
+	left: 15.765rem;
 }
 
 .submit, .skip {

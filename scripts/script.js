@@ -57,7 +57,7 @@ $(document).ready(function(){
   }
 
   function ring() {
-    $ring.volume = 0.5;
+    $ring.volume = 0.2;
     $ring.load();
     $ring.play();
   }
