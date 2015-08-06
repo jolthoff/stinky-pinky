@@ -183,7 +183,6 @@ $(document).ready(function() {
   function getRiddle() {
 
     var random = Math.floor(Math.random() * riddles.length);
-    var stop = random + 1;
     riddle = riddles.splice(random, 1)[0];
 
     quiz();
