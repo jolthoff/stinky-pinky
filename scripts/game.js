@@ -1,63 +1,4 @@
-var $gameReady = false;
-
-var beforeGame = function() {
-  // necessary variables
-  var visitor = {};
-  var $gamestart = $('.gamestart');
-  var $billboard = $('.billboard');
-  var $answer = $('.answer');
-  var $animations = $('.animations');
-  var $prompt;
-
-
- function welcome() {
-    $billboard.hide();
-    $answer.hide();
-    $animations.hide();
-
-    if (!visitor.user) {
-      $gamestart.html('<p class="welcome">Let\'s play Stinky Pinky!</p><p class="rules">Just give us a rhyming word pair that relates to the clue and a thumbs up!</p><input class="prompt" type"text" placeholder="Let\'s start with your name"/>');
-      $gamestart.fadeIn(800);
-      $prompt = $('.prompt');
-      $prompt.focus()
-      
-    } else {
-      $gamestart.html('<p class="welcome">Welcome back ' + visitor.user + '!</p><p class="highscore">Try to beat ' + visitor.highscore + '</p>')
-    }
-  }
-      
-
-
-  $(document).on({
-    keyup: function(){
-      if ($prompt.val().length > 0) {
-          $prompt.css('text-shadow', '0px 1px 0px rgba(127, 218, 255, 1)');
-          $(document).on({
-            keyup: function(e) {
-              if(e.keyCode === 13) {
-                visitor.user = $prompt.val() + Math.floor(Math.random() * 1000);
-                visitor.highscore = 0;
-                gameReady = true;
-                $(document).unbind("ready");
-              }
-            }
-          })
-      }
-      if (!$prompt.val())
-        $prompt.css('text-shadow', 'none');
-    },
-    click: function() {
-      $prompt.focus();
-    }
-  })
-
-  welcome();
-
-}
-  
-
-
-var beginGame = function() {
+var game = function() {
   
   // globals
   var visitor = {};
@@ -90,11 +31,13 @@ var beginGame = function() {
   var $ring = $('.ring')[0];
   var $swoosh = $('.swoosh')[0];
   var $womp = $('.womp')[0];
+  var gameReady;
+  var $prompt;
   
   // TODO
     /*
       * Add more riddles
-      * Add lazier evaluation of riddle answer
+      * Add better evaluation of riddle answer
       * Add try again prompt
       * Animate endgame prompt
       * Record highscore values
@@ -107,10 +50,6 @@ var beginGame = function() {
         * Add team scoring and tagging
 
     */
-  $gamestart.hide();
-  $billboard.show();
-  $answer.show();
-  $animations.show();
   // audio bits
   function ching() {
     $ching.volume = 0.6;
@@ -244,7 +183,6 @@ var beginGame = function() {
     var stop = random + 1;
     riddle = riddles.splice(random, 1)[0];
 
-    console.log("length is " + riddles.length);
     quiz();
 
   };
@@ -411,5 +349,4 @@ var beginGame = function() {
 
 };
 
-
-$(document).bind("ready", beforeGame);
+$(document).ready(game);
