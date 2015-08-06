@@ -52,6 +52,7 @@ $(document).ready(function() {
     $billboard.fadeIn(500);
     $answer.fadeIn(500);
     $animations.fadeIn(500);
+
   // audio bits
   function ching() {
     $ching.volume = 0.6;
@@ -328,7 +329,7 @@ $(document).ready(function() {
 
       setTimeout(function() {
         getRiddle(); 
-      }, 200)
+      }, 80)
 
       resetTime();
     }
@@ -344,6 +345,8 @@ $(document).ready(function() {
         $input.css('text-shadow', '0px 1px 0px rgba(127, 218, 255, 1)');
       if (!$input.val())
         $input.css('text-shadow', 'none');
+      if (e.keyCode === 39)
+        $skip.click();
     },
     click: function() {
       $input.focus();
