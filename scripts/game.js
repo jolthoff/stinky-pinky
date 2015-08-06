@@ -1,4 +1,4 @@
-var game = function() {
+$(document).ready(function() {
   
   // globals
   var visitor = {};
@@ -31,8 +31,8 @@ var game = function() {
   var $ring = $('.ring')[0];
   var $swoosh = $('.swoosh')[0];
   var $womp = $('.womp')[0];
-  var gameReady;
-  var $prompt;
+
+
   
   // TODO
     /*
@@ -50,6 +50,9 @@ var game = function() {
         * Add team scoring and tagging
 
     */
+    $billboard.fadeIn(800);
+    $answer.fadeIn(800);
+    $animations.fadeIn(800);
   // audio bits
   function ching() {
     $ching.volume = 0.6;
@@ -334,9 +337,11 @@ var game = function() {
   })
 
   $(document).on({
-    keyup: function(e) {
+    keydown: function(e) {
       if(e.keyCode === 13)
         testAnswer();
+    },
+    keyup: function(e) {
       if ($input.val().length > 0)
         $input.css('text-shadow', '0px 1px 0px rgba(127, 218, 255, 1)');
       if (!$input.val())
@@ -347,6 +352,4 @@ var game = function() {
     }
   });
 
-};
-
-$(document).ready(game);
+});

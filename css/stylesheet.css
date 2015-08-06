@@ -70,8 +70,8 @@ html, body {
 
 .submit, .skip {
 	position: fixed;
-	height: 3.625rem;
-	width: 3.625rem;
+	height: 4rem;
+	width: 5rem;
 }
 
 .submit {
