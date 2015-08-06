@@ -1,27 +1,69 @@
-var begin = function() {
-  // local storers
-  function welcome() {
+var $gameReady = false;
+
+var beforeGame = function() {
+  // necessary variables
+  var visitor = {};
+  var $gamestart = $('.gamestart');
+  var $billboard = $('.billboard');
+  var $answer = $('.answer');
+  var $animations = $('.animations');
+  var $prompt;
+
+
+ function welcome() {
+    $billboard.hide();
+    $answer.hide();
+    $animations.hide();
+
     if (!visitor.user) {
-      $gamestart.html('<p class="welcome">Welcome stranger! Here are the rules to Stinky Pinky:</p><p class="rules">You will receive a riddle (usually two words) to which you will answer with a word pair in which the first word relates to the first word of the riddle, and the second word relates to the second word of the riddle</p><p class="rules">Your word pair must rhyme</p><p class="rules">Good luck!</p><p class="prompt">Got a name?</p><input class="username" type="text" autofocus/>')
-      visitor.user = $username.val() + Math.floor(Math.random * 1000);
+      $gamestart.html('<p class="welcome">Let\'s play Stinky Pinky!</p><p class="rules">Just give us a rhyming word pair that relates to the clue and a thumbs up!</p><input class="prompt" type"text" placeholder="Let\'s start with your name"/>');
+      $gamestart.fadeIn(800);
+      $prompt = $('.prompt');
+      $prompt.focus()
       
-    } else 
-      $gamestart.html('<p class="welcome">Welcome back ' + visitor.user + '</p><p class="highscore">Try to beat ' + visitor.highscore + '</p>')
-
-  }
-
-  function storePoints() {
-    if (points > localStorage.getItem('highscore')) {
-      visitor.highscore = points;
-      localStorage.setItem('highscore', JSON.stringify(visitor.highscore));
+    } else {
+      $gamestart.html('<p class="welcome">Welcome back ' + visitor.user + '!</p><p class="highscore">Try to beat ' + visitor.highscore + '</p>')
     }
   }
+      
+
+
+  $(document).on({
+    keyup: function(){
+      if ($prompt.val().length > 0) {
+          $prompt.css('text-shadow', '0px 1px 0px rgba(127, 218, 255, 1)');
+          $(document).on({
+            keyup: function(e) {
+              if(e.keyCode === 13) {
+                visitor.user = $prompt.val() + Math.floor(Math.random() * 1000);
+                visitor.highscore = 0;
+                gameReady = true;
+                $(document).unbind("ready");
+              }
+            }
+          })
+      }
+      if (!$prompt.val())
+        $prompt.css('text-shadow', 'none');
+    },
+    click: function() {
+      $prompt.focus();
+    }
+  })
+
+  welcome();
+
 }
+  
 
-$(document).ready(function() {
 
+var beginGame = function() {
+  
   // globals
   var visitor = {};
+  var $billboard = $('.billboard');
+  var $answer = $('.answer');
+  var $animations = $('.animations');
   var test;
   var points = 0;
   var riddle;
@@ -35,7 +77,7 @@ $(document).ready(function() {
   var $wrong = $('.wrong');
   var $skipped = $('.skipped');
   var $timer = $('.timer');
-  var time = 9999;
+  var time = 15;
   var $gamestart = $('.gamestart');
   var $gameover = $('.gameover');
   var gameover;
@@ -48,7 +90,7 @@ $(document).ready(function() {
   var $ring = $('.ring')[0];
   var $swoosh = $('.swoosh')[0];
   var $womp = $('.womp')[0];
-
+  
   // TODO
     /*
       * Add more riddles
@@ -65,7 +107,10 @@ $(document).ready(function() {
         * Add team scoring and tagging
 
     */
-
+  $gamestart.hide();
+  $billboard.show();
+  $answer.show();
+  $animations.show();
   // audio bits
   function ching() {
     $ching.volume = 0.6;
@@ -364,4 +409,7 @@ $(document).ready(function() {
     }
   });
 
-});
+};
+
+
+$(document).bind("ready", beforeGame);

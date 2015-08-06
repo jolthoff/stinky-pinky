@@ -194,7 +194,7 @@ html, body {
 }
 
 .gameover {
-	font-family: 'La Belle Aurore', cursive;
+	font-family: 'Dancing Script', cursive;
 	text-align: center;
 	position: fixed;
 	top: -69%;
@@ -215,13 +215,36 @@ html, body {
 }
 
 .gamestart {
+	font-family: 'Dancing Script', cursive;
+	color: rgba(255, 180, 180, 1);
 	display: none;
 	position: fixed;
-	top: 5rem;
-	left: 10%;
-	height: 81%;
-	width: 79%;
+	top: -5%;
+	left: 5%;
+	height: 90%;
+	width: 90%;
 	border-radius: 1rem;
-	background-color: rgba(127, 238, 255, .7);
 	z-index: 999;
+	text-align: center;
+}
+
+.welcome {
+	font-size: 5.95rem;
+	line-height: 1;
+}
+
+.rules {
+	margin-top: -2rem;
+	font-size: 3.1rem;
+	line-height: 1;
+}
+
+.prompt {
+	font-family: 'La Belle Aurore', cursive;
+	font-size: 6rem;
+	text-align: center;
+	height: 8rem;
+	width: 90%;
+	color: transparent;
+	padding: 2rem;
 }
