@@ -1,7 +1,6 @@
 $(document).ready(function() {
   
   // globals
-  var visitor = {};
   var $billboard = $('.billboard');
   var $answer = $('.answer');
   var $animations = $('.animations');
@@ -31,7 +30,7 @@ $(document).ready(function() {
   var $ring = $('.ring')[0];
   var $swoosh = $('.swoosh')[0];
   var $womp = $('.womp')[0];
-
+  console.log(localStorage.getItem("visitor.user"));
 
   
   // TODO
@@ -50,9 +49,9 @@ $(document).ready(function() {
         * Add team scoring and tagging
 
     */
-    $billboard.fadeIn(800);
-    $answer.fadeIn(800);
-    $animations.fadeIn(800);
+    $billboard.fadeIn(500);
+    $answer.fadeIn(500);
+    $animations.fadeIn(500);
   // audio bits
   function ching() {
     $ching.volume = 0.6;
