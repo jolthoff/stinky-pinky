@@ -97,8 +97,13 @@ html, body {
 }
 
 .skip {
+	height: 4rem;
+	width: 4rem;
 	top: 16.95rem;
 	left: 54%;
+	/*background-image: url('../images/shaking-head.gif');
+	background-repeat: no-repeat;
+	background-size: cover;*/
 }
 
 .submit:hover, .skip:hover {

@@ -240,8 +240,8 @@ $(document).ready(function() {
     $input.val('');
     
     $skipped.text(riddle.q);
-    $skipped.show().animate({'font-size':'18rem'}, {queue: false, duration: 400});
-    $skipped.animate({'opacity': '0'}, 400, 
+    $skipped.show().animate({'font-size':'33rem'}, {queue: false, duration: 550});
+    $skipped.animate({'opacity': '0'}, 550, 
       function() {
         $(this).hide();
         $(this).css('opacity', 1);
