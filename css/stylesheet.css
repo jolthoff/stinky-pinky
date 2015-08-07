@@ -87,50 +87,55 @@ html, body {
 
 .submit, .skip {
 	position: fixed;
-	height: 4rem;
-	width: 5rem;
-}
-
-.submit {
-	top: 16.25rem;
-	left: 40%;
-}
-
-.skip {
-	height: 4rem;
-	width: 4rem;
-	top: 16.95rem;
-	left: 54%;
-	/*background-image: url('../images/shaking-head.gif');
-	background-repeat: no-repeat;
-	background-size: cover;*/
+	display: block;
 }
 
 .submit:hover, .skip:hover {
 	cursor: pointer;
+	display: block;
 }
 
-.submit img {
+.submit {
+	top: 18.15rem;
+	left: 36.2%;
+	height: 9.95rem;
+	width: 9.4rem;
+	eight: 6.55rem;
+	idth: 6rem;
+	background-image: url('../images/smiling-send.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.skip {
+	eight: 10.5rem;
+	idth: 9.4rem;
+	height: 6.55rem;
+	width: 6rem;
+	top: 16.55rem;
+	left: 51%;
+	background-image: url('../images/skip-shaking-head-shadow.gif');
+	background-repeat: no-repeat;
+	background-size: cover;
+
+}
+
+/*.submit img {
+
 	margin: 1rem 0 0 0;
 	height: 3.625rem;
 	width: 3.625rem;
 	opacity: .9;
 }
 
-.submit img:hover {
-	opacity: 1;
-}
-
 .skip img {
-	margin: .6rem 0 0 0;
-	height: 3.245rem;
-	width: 3.245rem;
-	opacity: .9;
+	padding: 1rem;
+	border: 1px red solid;
+	height: 10.245rem;
+	width: 10.245rem;
+	z-index: 10000000;
 }
-
-.skip img:hover {
-	opacity: 1;
-}
+*/
 
 .question {
 	z-index: 100;
@@ -150,7 +155,6 @@ html, body {
 
 .bling {
 	z-index: 100;
-	eft: 40.525rem;
 	left: 47%;
 	top: 25.125rem;
 	position: fixed;
@@ -165,7 +169,7 @@ html, body {
 	font-size: 9rem;
 	color: rgba(255, 180, 180, 1);
 	position: fixed;
-	top: 21rem;
+	top: 26.125rem;
 	left: 45.4%;
 }
 

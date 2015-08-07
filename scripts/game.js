@@ -17,7 +17,7 @@ $(document).ready(function() {
   var $wrong = $('.wrong');
   var $skipped = $('.skipped');
   var $timer = $('.timer');
-  var time = 15;
+  var time = 150000;
   var $gamestart = $('.gamestart');
   var $gameover = $('.gameover');
   var gameover;
@@ -240,12 +240,14 @@ $(document).ready(function() {
     $input.val('');
     
     $skipped.text(riddle.q);
-    $skipped.show().animate({'font-size':'33rem'}, {queue: false, duration: 550});
-    $skipped.animate({'opacity': '0'}, 550, 
+    $skipped.show().animate({'font-size':'38rem', 'top': '-15%', 'left': '-13.5%'}, {queue: false, duration: 450});
+    $skipped.animate({'opacity': '0'}, 450, 
       function() {
         $(this).hide();
         $(this).css('opacity', 1);
         $(this).css('font-size', '9rem');
+        $(this).css('top', '3.9rem');
+        $(this).css('left', '29%');
     });
 
   }
