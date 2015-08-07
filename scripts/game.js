@@ -17,7 +17,7 @@ $(document).ready(function() {
   var $wrong = $('.wrong');
   var $skipped = $('.skipped');
   var $timer = $('.timer');
-  var time = 150000;
+  var time = 15;
   var $gamestart = $('.gamestart');
   var $gameover = $('.gameover');
   var gameover;
